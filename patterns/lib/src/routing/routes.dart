@@ -8,6 +8,7 @@ import '../features/splash/screen/splash_screen.dart';
 
 class RouteManager {
   MaterialPageRoute<dynamic> route(RouteSettings settings) {
+    // ignore: unused_local_variable
     final data = settings.arguments != null ? settings.arguments ?? {} : {};
     debugPrint(settings.name);
     switch (settings.name) {

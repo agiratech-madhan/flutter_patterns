@@ -66,8 +66,8 @@ class HttpService {
     final bool isNetworkAvailable = await NetworkCheck().check();
     if (isNetworkAvailable) {
       try {
-        debugPrint("endpoint " + Uri.parse(endpoint).toString());
-        debugPrint("filePath " + body.toString());
+        debugPrint("endpoint " '${Uri.parse(endpoint).toString()}');
+        debugPrint("filePath   ${body.toString()}");
         var request = http.MultipartRequest("POST", Uri.parse(endpoint));
         request.headers.addAll(await addAuthenticationHeader());
         request.fields["upload_type"] = "attachement";
@@ -78,7 +78,7 @@ class HttpService {
                   MediaType('image', ImageUtils.getImageExtension(body)));
           request.files.add(frontFile);
         }
-        debugPrint("request " + request.toString());
+        debugPrint("request  +${request.toString()}");
         http.StreamedResponse response = await request.send();
         var respStr = await response.stream.bytesToString();
         var responseJson = json.decode(respStr.toString());

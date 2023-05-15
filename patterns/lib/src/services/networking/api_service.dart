@@ -27,7 +27,7 @@ class ApiService implements ApiInterface {
       JSON? queryParams,
       required T Function(JSON responseBody) converter,
       Function(bool)? onError}) async {
-    print(endpoint);
+    debugPrint(endpoint);
     final data = await _httpService.get(
       endpoint: endpoint,
       queryParams: queryParams,
@@ -42,7 +42,7 @@ class ApiService implements ApiInterface {
     required T Function(JSON response) converter,
     final dynamic Function(bool)? onError,
   }) async {
-    print(endpoint);
+    debugPrint(endpoint);
     final dataMap = await _httpService.post(
       endpoint: endpoint,
       body: jsonEncode(data),

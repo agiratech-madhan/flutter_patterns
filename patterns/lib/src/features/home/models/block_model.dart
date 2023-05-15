@@ -1,5 +1,3 @@
-import 'common_block.dart';
-
 sealed class Block {
   Block();
 
@@ -13,8 +11,6 @@ sealed class Block {
     };
   }
 }
-
-// import 'block_model.dart';
 
 class HeaderBlock extends Block {
   final String text;
