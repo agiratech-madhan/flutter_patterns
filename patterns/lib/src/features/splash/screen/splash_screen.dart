@@ -1,15 +1,39 @@
 import 'package:flutter/material.dart';
 import 'package:hooks_riverpod/hooks_riverpod.dart';
+import '../../../routing/route_constants.dart';
 import '../../../services/connectivity_service_provider.dart/connectivity_service_provider.dart';
+import '../../../services/local_storage/key_value_storage_service.dart';
 import '../../../ui_utils/app_snack_bar.dart';
 import '../../../utils/utils.dart';
 import '../../../constants/string_constants.dart';
 
-class SplashScreen extends HookConsumerWidget {
+class SplashScreen extends StatefulHookConsumerWidget {
   const SplashScreen({super.key});
 
   @override
-  Widget build(BuildContext context, ref) {
+  ConsumerState<ConsumerStatefulWidget> createState() => _SplashScreenState();
+}
+
+class _SplashScreenState extends ConsumerState<SplashScreen> {
+  @override
+  void initState() {
+    _startTimer();
+    super.initState();
+  }
+
+  void _startTimer() async {
+    Future.delayed(const Duration(seconds: 1), () => _moveToNextPage);
+  }
+
+  void _moveToNextPage() async {
+    // if (_keyValueStorageService.getAuthState()) {
+    Navigator.of(context).pushNamedAndRemoveUntil(
+        RouteConstants.homeScreen, (Route<dynamic> route) => false);
+    // }
+  }
+
+  @override
+  Widget build(BuildContext context) {
     ref.listen<AsyncValue<ConnectionStatus>>(
       connectionStreamProvider,
       (prevState, newState) {
